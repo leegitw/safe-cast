@@ -16,12 +16,10 @@ Overview
     * - package
       - |version| |supported-versions|
 
-.. |license| image:: https://img.shields.io/badge/License-MIT-yellow.svg
-    :alt: License Status
-    :target: https://opensource.org/licenses/MIT
+.. |license| image:: https://img.shields.io/badge/License-Apache%202.0-blue.svg
+    :target: https://opensource.org/licenses/Apache-2.0
 
 .. |travis| image:: https://travis-ci.org/TuneLab/safecast.svg?branch=master
-    :alt: Travis-CI Build Status
     :target: https://travis-ci.org/TuneLab/safecast
 
 .. |coveralls| image:: https://coveralls.io/repos/github/TuneLab/safecast/badge.svg?branch=master
