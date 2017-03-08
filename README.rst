@@ -12,9 +12,9 @@ Overview
     * - docs
       - |license|
     * - tests
-      - |travis| |coveralls|
+      - |travis|
     * - package
-      - |version| |supported-versions| |requires|
+      - |version| |supported-versions|
 
 .. |license| image:: https://img.shields.io/badge/License-MIT-yellow.svg
     :alt: License Status
