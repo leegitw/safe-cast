@@ -27,12 +27,12 @@ REQUIREMENTS = [
 ]
 
 PACKAGES = [
-    'safecast',
+    'smart-cast',
 ]
 
 TEST_REQUIREMENTS = ['pytest>=2.8.0', 'pytest-cov']
 
-with open('safecast/__init__.py', 'r') as fd:
+with open('smart-cast/__init__.py', 'r') as fd:
     version = re.search(r'^__version__\s*=\s*[\'"]([^\'"]*)[\'"]', fd.read(), re.MULTILINE).group(1)
 
 if not version:
@@ -64,21 +64,21 @@ with codecs.open('HISTORY.rst', 'r', 'utf-8') as f:
     history = f.read()
 
 setup(
-    name='safecast',
+    name='smart-cast',
     version=version,
-    description='Safe cast of base types',
+    description='Smart and safe cast of base types',
     long_description=readme + '\n\n' + history,
     author='TUNE Inc., TuneLab',
     author_email='jefft@tune.com',
-    url='https://github.com/TuneLab/safecast',
-    download_url='https://github.com/TuneLab/safecast/archive/v{0}.tar.gz'.format(version),
-    keywords=["safe", "cast"],
+    url='https://github.com/TuneLab/smart-cast',
+    download_url='https://github.com/TuneLab/smart-cast/archive/v{0}.tar.gz'.format(version),
+    keywords=["smart", "cast"],
     license='Apache Software License',
     zip_safe=False,
     install_requires=REQUIREMENTS,
     packages=PACKAGES,
     package_data={'': ['LICENSE']},
-    package_dir={'safecast': 'safecast'},
+    package_dir={'smart-cast': 'smart-cast'},
     setup_requires=[
         'pytest-runner',
     ],
