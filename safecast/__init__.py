@@ -3,9 +3,9 @@
 #  @copyright 2017 TUNE, Inc. (http://www.tune.com)
 #  @namespace requests_mv_integrations
 
-__title__ = 'requests-mv-integrations'
-__version__ = '0.00.1'
-__build__ = 0x000001
+__title__ = 'safecast'
+__version__ = '0.00.2'
+__build__ = 0x000002
 __version_info__ = tuple(__version__.split('.'))
 
 __author__ = 'jefft@tune.com'
