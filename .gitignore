@@ -18,27 +18,13 @@
 build/
 __pycache__/
 safecast/__pycache__/
-safecast/helpers/__pycache__/
 *.pyc
-
-# Code documentation
-docs/sphinx/_build/
-venv/
 
 # Backup files
 *.bak
 *.log
 *.*~
 *~
-
-# Sandbox
-**/_tmp/*
-**/tmp/*
-sandbox/
-_tmp/
-
-# Scripts
-bash/*
 
 # pytest
 .cache/*

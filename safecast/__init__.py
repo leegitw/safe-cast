@@ -4,8 +4,8 @@
 #  @namespace requests_mv_integrations
 
 __title__ = 'safecast'
-__version__ = '0.00.2'
-__build__ = 0x000002
+__version__ = '0.00.3'
+__build__ = 0x000003
 __version_info__ = tuple(__version__.split('.'))
 
 __author__ = 'jefft@tune.com'
