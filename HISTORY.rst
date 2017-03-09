@@ -3,6 +3,12 @@
 Release History
 ===============
 
+0.0.7 (2017-03-09)
+------------------
+* Renamed inner package folder to underscore: 'smart_cast. To comply with Python standard.
+* Updated casting logic
+* Updated testing
+
 0.0.6 (2017-03-08)
 ------------------
 * Renamed from 'safecast' to 'smart-cast'

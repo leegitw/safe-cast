@@ -7,7 +7,7 @@
 .PHONY: clean version build dist local-dev yapf pyflakes pylint
 
 PACKAGE := smart-cast
-PACKAGE_PREFIX := smart-cast
+PACKAGE_PREFIX := smart_cast
 
 PYTHON3 := $(shell which python3)
 PIP3    := $(shell which pip3)
