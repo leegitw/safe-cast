@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 #  @copyright 2017 TUNE, Inc. (http://www.tune.com)
-#  @namespace requests_mv_integrations
+#  @namespace smart_cast
 
 __title__ = 'smart-cast'
-__version__ = '0.00.6'
-__build__ = 0x000006
+__version__ = '0.00.7'
+__build__ = 0x000007
 __version_info__ = tuple(__version__.split('.'))
 
 __author__ = 'jefft@tune.com'
@@ -15,7 +15,8 @@ __python_required_version__ = (3, 0)
 
 
 def safe_cast(val, to_type, default=None):
-    """Safely cast value to type, and if failed, returned default.
+    """Safely cast value to type, and if failed, returned default if exists.
+        If default is 'None' and and error occurs, it is raised.
 
     Args:
         val:
@@ -30,12 +31,72 @@ def safe_cast(val, to_type, default=None):
 
     try:
         return to_type(val)
-    except ValueError:
-        return default
+    except ValueError as ex:
+        if default is not None:
+            return default
+        else:
+            raise ex
 
 
-def safe_str(val):
-    """Safely cast value to str
+def safe_str(val, default=None):
+    """Safely cast value to str, Optional: Pass default value. Returned if casting fails.
+
+    Args:
+        val:
+        default:
+
+    Returns:
+
+    """
+    if val is None:
+        return ''
+    return safe_cast(val, str, default)
+
+
+def safe_float(val, ndigits=2, default=None):
+    """Safely cast value to float, remove ',' if exists to ensure strs like: "1,234.5" are handled
+        Optional: Pass default value. Returned if casting fails.
+
+    Args:
+        val:
+        ndigits:
+        default:
+
+    Returns:
+
+    """
+    tmp_val = val.replace(',', '') if type(val) == str else val
+    return round(safe_cast(tmp_val, float, default), ndigits)
+
+
+def safe_int(val, default=None):
+    """Safely cast value to int. Optional: Pass default value. Returned if casting fails.
+
+    Args:
+        val:
+        default:
+
+    Returns:
+
+    """
+    return safe_cast(safe_float(val, ndigits=0, default=default), int, default)
+
+
+def safe_dict(val, default=None):
+    """Safely cast value to dict. Optional: Pass default value. Returned if casting fails.
+
+    Args:
+        val:
+        default:
+
+    Returns:
+
+    """
+    return safe_cast(val, dict, default)
+
+
+def safe_smart_cast(val):
+    """Safely cast value, default str
 
     Args:
         val:
@@ -43,40 +104,18 @@ def safe_str(val):
     Returns:
 
     """
-    return safe_cast(val, str, "")
+    to_type = type(val)
+    if to_type == str:
+        return safe_str(val)
+    if to_type == dict:
+        return safe_dict(val)
+    if to_type == int:
+        return safe_int(val)
+    if to_type == float:
+        return safe_float(val)
+
+    return safe_str(str(val))
 
 
-def safe_float(val, ndigits=2):
-    """Safely cast value to float
-
-    Args:
-        val:
-
-    Returns:
-
-    """
-    return round(safe_cast(val, float, 0.0), ndigits)
-
-
-def safe_int(val):
-    """Safely cast value to int
-
-    Args:
-        val:
-
-    Returns:
-
-    """
-    return safe_cast(safe_float(val, 0), int, 0)
-
-
-def safe_dict(val):
-    """Safely cast value to dict
-
-    Args:
-        val:
-
-    Returns:
-
-    """
-    return safe_cast(val, dict, {})
+def safe_cost(val):
+    return safe_float(val, ndigits=4)
