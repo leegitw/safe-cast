@@ -3,7 +3,7 @@
 #  @copyright 2017 TUNE, Inc. (http://www.tune.com)
 #  @namespace requests_mv_integration
 
-from smart-cast import (
+from smart_cast import (
     safe_float,
     safe_str,
     safe_dict,

@@ -3,9 +3,9 @@
 #  @copyright 2017 TUNE, Inc. (http://www.tune.com)
 #  @namespace requests_mv_integrations
 
-__title__ = 'safecast'
-__version__ = '0.00.5'
-__build__ = 0x000005
+__title__ = 'smart-cast'
+__version__ = '0.00.6'
+__build__ = 0x000006
 __version_info__ = tuple(__version__.split('.'))
 
 __author__ = 'jefft@tune.com'

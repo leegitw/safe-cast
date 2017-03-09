@@ -27,12 +27,12 @@ REQUIREMENTS = [
 ]
 
 PACKAGES = [
-    'smart-cast',
+    'smart_cast',
 ]
 
 TEST_REQUIREMENTS = ['pytest>=2.8.0', 'pytest-cov']
 
-with open('smart-cast/__init__.py', 'r') as fd:
+with open('smart_cast/__init__.py', 'r') as fd:
     version = re.search(r'^__version__\s*=\s*[\'"]([^\'"]*)[\'"]', fd.read(), re.MULTILINE).group(1)
 
 if not version:
