@@ -219,11 +219,9 @@ run-examples:
 	@echo "======================================================"
 	@echo run-examples $(PACKAGE)
 	@echo "======================================================"
-	@$(PYTHON3) examples/example_request.py
+	@echo examples/example_smart_cast.py
 	@echo "======================================================"
-	@echo examples/example_smart-cast.py
-	@echo "======================================================"
-	@$(PYTHON3) examples/example_smart-cast.py
+	@$(PYTHON3) examples/example_smart_cast.py
 
 test:
 	py.test tests
