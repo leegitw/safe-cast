@@ -229,10 +229,10 @@ test:
 	py.test tests
 
 coverage:
-	py.test --verbose --cov-report html --cov=smart-cast tests
+	py.test --verbose --cov-report html --cov=smart_cast tests
 
 coverage-percent:
-	py.test --verbose --cov=smart-cast tests
+	py.test --verbose --cov=smart_cast tests
 
 list:
 	cat Makefile | grep "^[a-z]" | awk '{print $$1}' | sed "s/://g" | sort
