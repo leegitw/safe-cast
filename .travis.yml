@@ -8,6 +8,6 @@ before_script:
 - make pyflakes
 script:
 - make test
-#- make coverage
+- make coverage
 after_success:
   coveralls
