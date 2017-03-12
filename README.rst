@@ -12,7 +12,7 @@ Overview
     * - docs
       - |license|
     * - tests
-      - |travis|
+      - |travis||coveralls|
     * - package
       - |version| |supported-versions|
 
