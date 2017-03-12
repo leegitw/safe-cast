@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 #  @copyright 2017 TUNE, Inc. (http://www.tune.com)
-#  @namespace smart_cast
+#  @namespace safe_cast
 
 import pytest
 
-from smart_cast import (
+from safe_cast import (
     safe_float,
     safe_str,
     safe_dict,

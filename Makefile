@@ -6,8 +6,8 @@
 
 .PHONY: clean version build dist local-dev yapf pyflakes pylint
 
-PACKAGE := smart-cast
-PACKAGE_PREFIX := smart_cast
+PACKAGE := safe-cast
+PACKAGE_PREFIX := safe_cast
 
 PYTHON3 := $(shell which python3)
 PIP3    := $(shell which pip3)
@@ -219,18 +219,18 @@ run-examples:
 	@echo "======================================================"
 	@echo run-examples $(PACKAGE)
 	@echo "======================================================"
-	@echo examples/example_smart_cast.py
+	@echo examples/example_safe_cast.py
 	@echo "======================================================"
-	@$(PYTHON3) examples/example_smart_cast.py
+	@$(PYTHON3) examples/example_safe_cast.py
 
 test:
 	py.test tests
 
 coverage:
-	py.test --verbose --cov-report html --cov=smart_cast tests
+	py.test --verbose --cov-report html --cov=safe_cast tests
 
 coverage-percent:
-	py.test --verbose --cov=smart_cast tests
+	py.test --verbose --cov=safe_cast tests
 
 list:
 	cat Makefile | grep "^[a-z]" | awk '{print $$1}' | sed "s/://g" | sort

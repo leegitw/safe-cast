@@ -8,8 +8,8 @@
 #
 #  Python 3.0
 #
-#  @category  smart-cast
-#  @package   smart-cast
+#  @category  safe-cast
+#  @package   safe-cast
 #  @author    TLV Developers <tlvdev@tune.com>
 #  @copyright 2017 TUNE, Inc. (http://www.tune.com)
 #  @license   http://opensource.org/licenses/MIT The MIT License (MIT)
