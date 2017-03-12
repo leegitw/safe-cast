@@ -5,7 +5,7 @@
 
 from pprintpp import pprint
 
-from smart_cast import (
+from safe_cast import (
     safe_int,
     safe_float,
     safe_str,

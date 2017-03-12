@@ -3,9 +3,9 @@
 #  @copyright 2017 TUNE, Inc. (http://www.tune.com)
 #  @namespace smart_cast
 
-__title__ = 'smart-cast'
-__version__ = '0.00.7'
-__build__ = 0x000007
+__title__ = 'safe-cast'
+__version__ = '0.00.8'
+__build__ = 0x000008
 __version_info__ = tuple(__version__.split('.'))
 
 __author__ = 'jefft@tune.com'
@@ -31,11 +31,10 @@ def safe_cast(val, to_type, default=None):
 
     try:
         return to_type(val)
-    except ValueError as ex:
-        if default is not None:
-            return default
-        else:
-            raise ex
+    except ValueError:
+        if default is None:
+            raise
+        return default
 
 
 def safe_str(val, default=None):
