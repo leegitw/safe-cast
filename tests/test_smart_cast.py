@@ -10,6 +10,7 @@ from safe_cast import (
     safe_str,
     safe_dict,
     safe_int,
+    safe_cast,
 )
 
 
@@ -86,3 +87,16 @@ def test_safe_dict():
         assert safe_dict(5)
     with pytest.raises(ValueError, message='Expecting ValueError because str not castable to dict.'):
         assert safe_dict('Hello Jeff')
+
+
+def test_None():
+    assert safe_int(None) == 0
+    assert safe_int(None, 7) == 7
+    assert safe_float(None) == 0.0
+    assert safe_float(None, default=7.7) == 7.7
+    assert safe_dict(None) == {}
+    assert safe_dict(None, {'Jeff': 'Tanner'}) == {'Jeff': 'Tanner'}
+    assert safe_str(None) == ''
+    assert safe_str(None, "stas") == "stas"
+    assert safe_cast(None, str) is None
+    assert safe_cast(None, str, default="TuliTuliTuli") == "TuliTuliTuli"

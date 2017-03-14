@@ -4,8 +4,8 @@
 #  @namespace smart_cast
 
 __title__ = 'safe-cast'
-__version__ = '0.00.8'
-__build__ = 0x000008
+__version__ = '0.00.9'
+__build__ = 0x000009
 __version_info__ = tuple(__version__.split('.'))
 
 __author__ = 'jefft@tune.com'
@@ -48,7 +48,10 @@ def safe_str(val, default=None):
 
     """
     if val is None:
-        return ''
+        if default:
+            return default
+        else:
+            return ''
     return safe_cast(val, str, default)
 
 
@@ -64,6 +67,12 @@ def safe_float(val, ndigits=2, default=None):
     Returns:
 
     """
+    if val is None:
+        if default:
+            return default
+        else:
+            return float(0.0)
+
     tmp_val = val.replace(',', '') if type(val) == str else val
     return round(safe_cast(tmp_val, float, default), ndigits)
 
@@ -78,6 +87,12 @@ def safe_int(val, default=None):
     Returns:
 
     """
+    if val is None:
+        if default:
+            return default
+        else:
+            return int(0)
+
     return safe_cast(safe_float(val, ndigits=0, default=default), int, default)
 
 
@@ -91,6 +106,12 @@ def safe_dict(val, default=None):
     Returns:
 
     """
+    if val is None:
+        if default:
+            return default
+        else:
+            return {}
+
     return safe_cast(val, dict, default)
 
 
@@ -118,3 +139,7 @@ def safe_smart_cast(val):
 
 def safe_cost(val):
     return safe_float(val, ndigits=4)
+
+
+if __name__=='__main__':
+    pass

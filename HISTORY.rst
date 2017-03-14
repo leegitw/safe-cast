@@ -2,6 +2,11 @@
 
 Release History
 ===============
+
+0.0.9 (2017-03-14)
+------------------
+* Handle None input
+
 0.0.8 (2017-03-12)
 ------------------
 * Rename package to 'safe-cast'
