@@ -1,7 +1,7 @@
 #   Makefile
 #
 # license   http://www.apache.org/licenses/LICENSE-2.0
-# copyright Copyright (c) 2016, TUNE Inc. (http://www.tune.com)
+# copyright Copyright (c) 2017, TUNE Inc. (http://www.tune.com)
 #
 
 .PHONY: clean version build dist local-dev yapf pyflakes pylint
@@ -144,25 +144,6 @@ dist: clean
 	$(PYTHON3) $(SETUP_FILE) bdist_wheel upload
 	$(PYTHON3) $(SETUP_FILE) bdist_egg upload
 	$(PYTHON3) $(SETUP_FILE) sdist --format=gztar upload
-	ls -al ./dist/$(PACKAGE_PREFIX_WILDCARD)
-
-build: clean
-	@echo "======================================================"
-	@echo remove $(PACKAGE_PREFIX_WILDCARD) and $(PACKAGE_WILDCARD)
-	@echo "======================================================"
-	mkdir -p ./dist/
-	find ./dist/ -name $(PACKAGE_WILDCARD) -exec rm -vf {} \;
-	find ./dist/ -name $(PACKAGE_PREFIX_WILDCARD) -exec rm -vf {} \;
-	@echo "======================================================"
-	@echo build $(PACKAGE)
-	@echo "======================================================"
-	$(PIP3) install --upgrade -r requirements.txt
-	$(PYTHON3) $(SETUP_FILE) clean
-	$(PYTHON3) $(SETUP_FILE) bdist_wheel
-	$(PYTHON3) $(SETUP_FILE) bdist_egg
-	$(PYTHON3) $(SETUP_FILE) sdist --format=zip,gztar
-	$(PYTHON3) $(SETUP_FILE) build
-	$(PYTHON3) $(SETUP_FILE) install
 	ls -al ./dist/$(PACKAGE_PREFIX_WILDCARD)
 
 tools-requirements: $(TOOLS_REQ_FILE)
