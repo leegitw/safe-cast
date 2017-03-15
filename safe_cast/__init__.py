@@ -4,8 +4,8 @@
 #  @namespace safe_cast
 
 __title__ = 'safe-cast'
-__version__ = '0.01.0'
-__build__ = 0x000100
+__version__ = '0.01.1'
+__build__ = 0x000101
 __version_info__ = tuple(__version__.split('.'))
 
 __author__ = 'jefft@tune.com'
@@ -65,7 +65,7 @@ def safe_float(val, ndigits=2, default=None):
     Returns:
 
     """
-    if val is None:
+    if not val:  # None or '' or ""
         return default if default is not None else 0.0
 
     _val = val.replace(',', '') if type(val) == str else val
@@ -82,7 +82,7 @@ def safe_int(val, default=None):
     Returns:
 
     """
-    if val is None:
+    if not val:  # None or '' or ""
         return default if default is not None else 0
 
     return safe_cast(safe_float(val, ndigits=0, default=default), int, default)
@@ -98,7 +98,7 @@ def safe_dict(val, default=None):
     Returns:
 
     """
-    if val is None:
+    if not val:  # None or '' or ""
         return default if default is not None else {}
 
     return safe_cast(val, dict, default)

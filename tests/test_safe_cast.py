@@ -100,3 +100,16 @@ def test_None():
     assert safe_str(None, "stas") == "stas"
     assert safe_cast(None, str) is None
     assert safe_cast(None, str, default="TuliTuliTuli") == "TuliTuliTuli"
+
+
+def test_empty():
+    assert safe_int("") == 0
+    assert safe_int('') == 0
+    assert safe_int('', 7) == 7
+    assert safe_float("") == 0.0
+    assert safe_float('') == 0.0
+    assert safe_float('', default=7.7) == 7.7
+    assert safe_dict("") == {}
+    assert safe_dict('') == {}
+    assert safe_dict('', {'Max': 'Ohad'}) == {'Max': 'Ohad'}
+
