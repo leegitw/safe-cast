@@ -3,6 +3,11 @@
 Release History
 ===============
 
+0.1.0 (2017-03-14)
+------------------
+* Production ready
+* Cleanup
+
 0.0.9 (2017-03-14)
 ------------------
 * Handle None input

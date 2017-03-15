@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 #  @copyright 2017 TUNE, Inc. (http://www.tune.com)
-#  @namespace smart_cast
+#  @namespace safe_cast
 
 __title__ = 'safe-cast'
 __version__ = '0.01.0'
@@ -128,7 +128,3 @@ def safe_smart_cast(val):
 
 def safe_cost(val):
     return safe_float(val, ndigits=4)
-
-
-if __name__=='__main__':
-    pass
