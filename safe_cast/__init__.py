@@ -4,8 +4,8 @@
 #  @namespace safe_cast
 
 __title__ = 'safe-cast'
-__version__ = '0.01.1'
-__build__ = 0x000101
+__version__ = '0.01.2'
+__build__ = 0x000102
 __version_info__ = tuple(__version__.split('.'))
 
 __author__ = 'jefft@tune.com'
