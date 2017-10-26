@@ -3,6 +3,10 @@
 Release History
 ===============
 
+0.1.2 (2017-10-19)
+-------------------
+* Update requirements.txt
+
 0.1.1 (2017-03-15)
 -------------------
 * Handle empty string -> int/float/dict casting
