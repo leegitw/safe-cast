@@ -40,19 +40,18 @@ Overview
 
 .. end-badges
 
+
 safe-cast
-========================
+=========
 
-``safe-cast`` Cast data in Python safely.
-
-
-Installation
-============
+Cast values in Python safely.
 
 
 Usage
 =====
 
+``safe_int()``
 
-Reporting Issues
-================
+``safe_float()``
+
+``safe_str()``
