@@ -40,19 +40,72 @@ Overview
 
 .. end-badges
 
+
 safe-cast
-========================
+=========
 
-``safe-cast`` Cast data in Python safely.
-
-
-Installation
-============
+Cast data in Python safely.
 
 
 Usage
 =====
 
+``safe_cast(val, to_type, default=None)``
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Safely cast a value to type, and if failed, returned default if exists.
 
-Reporting Issues
-================
+    Optional: Pass default value. Returned if casting fails.
+
+    :param val: Value to be cast.
+    :param to_type: Safely cast to a specific type.
+    :param default: Default if casting fails.
+    :return: Return casted value or default.
+
+``safe_int(val, default=None)``
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Safely cast a value to an integer.
+
+    Optional: Pass default value. Returned if casting fails.
+
+    :param val: Value to be cast to int.
+    :param default: Default if casting fails.
+    :return: Return int casted value or default.
+
+``safe_float(val, ndigits=2, default=None)``
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Safely cast a value to float, remove ',' if exists to ensure strings "1,234.5" are transformed to become "1234.5".
+
+    Optional: Pass default value. Returned if casting fails.
+
+    :param val: Value to be cast to float.
+    :param ndigits: Number of digits in float.
+    :param default: Default if casting fails.
+    :return: Return float casted value or default.
+
+``safe_str(val, default=None)``
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Safely cast a value to a string.
+
+    Optional: Pass default value. Returned if casting fails.
+
+    :param val: Value to be cast to string.
+    :param default: Default if casting fails.
+    :return: Return string casted value or default.
+
+``safe_dict(val, default=None)``
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Safely cast a value to a dictionary.
+
+    Optional: Pass default value. Returned if casting fails.
+
+    :param val: Value to be cast to dictionary.
+    :param default: Default if casting fails.
+    :return: Return dictionary casted value or default.
+
+``safe_smart_cast(val)``
+~~~~~~~~~~~~~~~~~~~~~~~~
+    Safely cast a value to the best matching type.
+    Optional: Pass default value. Returned if casting fails.
+
+    :param val: Value to be smartly cast.
+    :return: Typed value
