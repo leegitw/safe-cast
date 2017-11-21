@@ -4,8 +4,8 @@
 #  @namespace safe_cast
 
 __title__ = 'safe-cast'
-__version__ = '0.1.4'
-__build__ = 0x000104
+__version__ = '0.1.5'
+__build__ = 0x000105
 __version_info__ = tuple(__version__.split('.'))
 
 __author__ = 'jefft@tune.com'
@@ -15,16 +15,13 @@ __python_required_version__ = (3, 0)
 
 
 def safe_cast(val, to_type, default=None):
-    """Safely cast value to type, and if failed, returned default if exists.
-        If default is 'None' and and error occurs, it is raised.
+    """Safely cast a value to type, and if failed, returned default if exists.
+    Optional: Pass default value. Returned if casting fails.
 
-    Args:
-        val:
-        to_type:
-        default:
-
-    Returns:
-
+    :param val: Value to be cast.
+    :param to_type: Safely cast to a specific type.
+    :param default: Default if casting fails.
+    :return: Return casted value or default.
     """
     if val is None:
         return default
@@ -38,14 +35,12 @@ def safe_cast(val, to_type, default=None):
 
 
 def safe_str(val, default=None):
-    """Safely cast value to str, Optional: Pass default value. Returned if casting fails.
+    """Safely cast a value to a string.
+    Optional: Pass default value. Returned if casting fails.
 
-    Args:
-        val:
-        default:
-
-    Returns:
-
+    :param val: Value to be cast to string.
+    :param default: Default if casting fails.
+    :return: Return string casted value or default.
     """
     if val is None:
         return default if default is not None else ''
@@ -54,16 +49,13 @@ def safe_str(val, default=None):
 
 
 def safe_float(val, ndigits=2, default=None):
-    """Safely cast value to float, remove ',' if exists to ensure strs like: "1,234.5" are handled
-        Optional: Pass default value. Returned if casting fails.
+    """Safely cast a value to float, remove ',' if exists to ensure strings "1,234.5" are transformed to become "1234.5".
+    Optional: Pass default value. Returned if casting fails.
 
-    Args:
-        val:
-        ndigits:
-        default:
-
-    Returns:
-
+    :param val: Value to be cast to float.
+    :param ndigits: Number of digits in float.
+    :param default: Default if casting fails.
+    :return: Return float casted value or default.
     """
     if not val:  # None or '' or ""
         return default if default is not None else 0.0
@@ -73,14 +65,12 @@ def safe_float(val, ndigits=2, default=None):
 
 
 def safe_int(val, default=None):
-    """Safely cast value to int. Optional: Pass default value. Returned if casting fails.
+    """Safely cast a value to an integer.
+    Optional: Pass default value. Returned if casting fails.
 
-    Args:
-        val:
-        default:
-
-    Returns:
-
+    :param val: Value to be cast to int.
+    :param default: Default if casting fails.
+    :return: Return int casted value or default.
     """
     if not val:  # None or '' or ""
         return default if default is not None else 0
@@ -89,14 +79,12 @@ def safe_int(val, default=None):
 
 
 def safe_dict(val, default=None):
-    """Safely cast value to dict. Optional: Pass default value. Returned if casting fails.
+    """Safely cast a value to a dictionary.
+    Optional: Pass default value. Returned if casting fails.
 
-    Args:
-        val:
-        default:
-
-    Returns:
-
+    :param val: Value to be cast to dictionary.
+    :param default: Default if casting fails.
+    :return: Return dictionary casted value or default.
     """
     if not val:  # None or '' or ""
         return default if default is not None else {}
@@ -105,13 +93,11 @@ def safe_dict(val, default=None):
 
 
 def safe_smart_cast(val):
-    """Safely cast value, default str
+    """Safely cast a value to the best matching type.
+    Optional: Pass default value. Returned if casting fails.
 
-    Args:
-        val:
-
-    Returns:
-
+    :param val: Value to be smartly cast.
+    :return: Typed value
     """
     to_type = type(val)
     if to_type == str:
@@ -127,4 +113,9 @@ def safe_smart_cast(val):
 
 
 def safe_cost(val):
+    """Safety cast value to a cost value which is a floating value with 4 digits.
+
+    :param val: Value to be cast to cost of type float.
+    :return: float
+    """
     return safe_float(val, ndigits=4)
