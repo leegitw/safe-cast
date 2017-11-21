@@ -1,8 +1,14 @@
 .. -*- mode: rst -*-
 
-========
-Overview
-========
+
+safe-cast
+---------
+
+Cast data in Python safely.
+
+
+Badges
+------
 
 .. start-badges
 
@@ -41,14 +47,30 @@ Overview
 .. end-badges
 
 
-safe-cast
-=========
+Functions
+---------
 
-Cast data in Python safely.
++-----------------------------------------------+------------------------------------------------------------------+
+| Function                                      | Purpose                                                          |
++===============================================+==================================================================+
+| ``safe_cast(val, to_type, default=None)``     | Cast value to requested type, if failed, then used default.      |
++-----------------------------------------------+------------------------------------------------------------------+
+| ``safe_str(val, default=None)``               | Cast value to type string, if failed, then used default.         |
++-----------------------------------------------+------------------------------------------------------------------+
+| ``safe_float(val, ndigits=2, default=None)``  | Cast value to type float, if failed, then used default.          |
++-----------------------------------------------+------------------------------------------------------------------+
+| ``safe_int(val, default=None)``               | Cast value to type int, if failed, then used default.            |
++-----------------------------------------------+------------------------------------------------------------------+
+| ``safe_dict(val, default=None)``              | Cast value to type dictionary, if failed, then used default.     |
++-----------------------------------------------+------------------------------------------------------------------+
+| ``safe_smart_cast(val)``                      | Determine type based upon value, and cast to that type.          |
++-----------------------------------------------+------------------------------------------------------------------+
+| ``safe_cost(val)``                            | Cast value to type float by 4 decimal points.                    |
++-----------------------------------------------+------------------------------------------------------------------+
 
 
 Usage
-=====
+-----
 
 ``safe_cast(val, to_type, default=None)``
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -109,3 +131,4 @@ Usage
 
     :param val: Value to be smartly cast.
     :return: Typed value
+
