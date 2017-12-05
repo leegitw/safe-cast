@@ -4,7 +4,7 @@
 safe-cast
 ---------
 
-Cast data in Python safely.
+Safe casting of Python base types.
 
 
 Badges
@@ -20,7 +20,7 @@ Badges
     * - tests
       - |travis| |coveralls|
     * - package
-      - |version| |supported-versions|
+      - |version| |supported-versions| |requires|
 
 
 .. |docs| image:: https://readthedocs.org/projects/safe-cast/badge/?style=flat
