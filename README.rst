@@ -15,14 +15,28 @@ Badges
 .. list-table::
     :stub-columns: 1
 
-    * - docs
-      - |license|
+    * - info
+      - |license| |hits| |contributors|
     * - tests
       - |travis| |coveralls|
     * - package
       - |version| |supported-versions|
 
+
+.. |docs| image:: https://readthedocs.org/projects/safe-cast/badge/?style=flat
+    :alt: Documentation Status
+    :target: https://readthedocs.org/projects/safe-cast
+
+.. |hits| image:: http://hits.dwyl.io/TuneLab/safe-cast.svg
+    :alt: Hit Count
+    :target: http://hits.dwyl.io/TuneLab/safe-cast
+
+.. |contributors| image:: https://img.shields.io/github/contributors/TuneLab/safe-cast.svg
+    :alt: Contributors
+    :target: https://github.com/TuneLab/safe-cast/graphs/contributors
+
 .. |license| image:: https://img.shields.io/badge/License-Apache%202.0-blue.svg
+    :alt: License
     :target: https://opensource.org/licenses/Apache-2.0
 
 .. |travis| image:: https://travis-ci.org/TuneLab/safe-cast.svg?branch=master

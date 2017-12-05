@@ -73,7 +73,7 @@ setup(
     author_email='jefft@tune.com',
     url='https://github.com/TuneLab/safe-cast',
     download_url='https://github.com/TuneLab/safe-cast/archive/v{0}.tar.gz'.format(version),
-    keywords=["safe", "cast"],
+    keywords="safe casting",
     license='Apache Software License',
     zip_safe=False,
     install_requires=REQUIREMENTS,
