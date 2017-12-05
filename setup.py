@@ -67,7 +67,7 @@ with codecs.open('HISTORY.rst', 'r', 'utf-8') as f:
 setup(
     name='safe-cast',
     version=version,
-    description='safe and safe cast of base types',
+    description='Safe casting of Python base types',
     long_description=readme + '\n\n' + history,
     author='TUNE Inc., TuneLab',
     author_email='jefft@tune.com',
