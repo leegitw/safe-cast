@@ -1,8 +1,15 @@
 .. -*- mode: rst -*-
 
-
 safe-cast
----------
+=========
+
+.. toctree::
+   :maxdepth: 2
+   :caption: Contents:
+
+
+Introduction
+------------
 
 Safe casting of Python base types.
 

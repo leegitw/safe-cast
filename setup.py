@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-#  @namespace requests-mv-integrations
+#  @namespace safe_cast
 #
 #    Copyright (c) 2017 TUNE, Inc.
 #    All rights reserved.
@@ -76,6 +76,7 @@ setup(
     keywords="safe casting",
     license='Apache Software License',
     zip_safe=False,
+    include_package_data=True,
     install_requires=REQUIREMENTS,
     packages=PACKAGES,
     package_data={'': ['LICENSE']},
