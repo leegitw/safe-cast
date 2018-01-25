@@ -11,6 +11,6 @@
 #  @category  safe-cast
 #  @package   safe-cast
 #  @author    TLV Developers <tlvdev@tune.com>
-#  @copyright 2017 TUNE, Inc. (http://www.tune.com)
+#  @copyright 2018 TUNE, Inc. (http://www.tune.com)
 #  @license   http://opensource.org/licenses/MIT The MIT License (MIT)
 #  @link      https://developers.tune.com @endlink
