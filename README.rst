@@ -28,39 +28,40 @@ Badges
 
 
 .. |docs| image:: https://readthedocs.org/projects/safe-cast/badge/?style=flat
-    :alt: Documentation Status
     :target: http://safe-cast.readthedocs.io
+    :alt: Documentation Status
 
-.. |hits| image:: http://hits.dwyl.io/TuneLab/safe-cast.svg
+.. |hits| image:: http://hits.dwyl.io/tuneinc/safe-cast.svg
+    :target: http://hits.dwyl.io/tuneinc/safe-cast
     :alt: Hit Count
-    :target: http://hits.dwyl.io/TuneLab/safe-cast
 
-.. |contributors| image:: https://img.shields.io/github/contributors/TuneLab/safe-cast.svg
+.. |contributors| image:: https://img.shields.io/github/contributors/tuneinc/safe-cast.svg
+    :target: https://github.com/tuneinc/safe-cast/graphs/contributors
     :alt: Contributors
-    :target: https://github.com/TuneLab/safe-cast/graphs/contributors
 
 .. |license| image:: https://img.shields.io/badge/License-Apache%202.0-blue.svg
-    :alt: License
     :target: https://opensource.org/licenses/Apache-2.0
+    :alt: License
 
-.. |travis| image:: https://travis-ci.org/TuneLab/safe-cast.svg?branch=master
-    :target: https://travis-ci.org/TuneLab/safe-cast
+.. |travis| image:: https://travis-ci.org/tuneinc/safe-cast.svg?branch=master
+    :target: https://travis-ci.org/tuneinc/safe-cast
+    :alt: Travis
 
-.. |coveralls| image:: https://coveralls.io/repos/github/TuneLab/safe-cast/badge.svg?branch=master
+.. |coveralls| image:: https://coveralls.io/repos/github/tuneinc/safe-cast/badge.svg?branch=master
+    :target: https://coveralls.io/github/tuneinc/safe-cast?branch=master
     :alt: Code Coverage Status
-    :target: https://coveralls.io/github/TuneLab/safe-cast?branch=master
 
-.. |requires| image:: https://requires.io/github/TuneLab/safe-cast/requirements.svg?branch=master
-     :target: https://requires.io/github/TuneLab/safe-cast/requirements/?branch=master
+.. |requires| image:: https://requires.io/github/tuneinc/safe-cast/requirements.svg?branch=master
+     :target: https://requires.io/github/tuneinc/safe-cast/requirements/?branch=master
      :alt: Requirements Status
 
 .. |version| image:: https://img.shields.io/pypi/v/safe-cast.svg?style=flat
-    :alt: PyPI Package latest release
     :target: https://pypi.python.org/pypi/safe-cast
+    :alt: PyPI Package latest release
 
 .. |supported-versions| image:: https://img.shields.io/pypi/pyversions/safe-cast.svg?style=flat
-    :alt: Supported versions
     :target: https://pypi.python.org/pypi/safe-cast
+    :alt: Supported versions
 
 .. end-badges
 
