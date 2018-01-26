@@ -39,9 +39,9 @@ Badges
     :target: https://github.com/tuneinc/safe-cast/graphs/contributors
     :alt: Contributors
 
-.. |license| image:: https://img.shields.io/badge/License-Apache%202.0-blue.svg
-    :target: https://opensource.org/licenses/Apache-2.0
-    :alt: License
+.. |license| image:: https://img.shields.io/badge/License-MIT-yellow.svg
+    :alt: License Status
+    :target: https://opensource.org/licenses/MIT
 
 .. |travis| image:: https://travis-ci.org/tuneinc/safe-cast.svg?branch=master
     :target: https://travis-ci.org/tuneinc/safe-cast

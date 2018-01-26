@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 #  @namespace safe_cast
 #
-#    Copyright (c) 2017 TUNE, Inc.
+#    Copyright (c) 2018 TUNE, Inc.
 #    All rights reserved.
 #
 
@@ -50,7 +50,7 @@ CLASSIFIERS = [
     'Development Status :: 5 - Production/Stable',
     'Intended Audience :: Developers',
     'Natural Language :: English',
-    'License :: OSI Approved :: Apache Software License',
+    'License :: OSI Approved :: MIT License',
     'Programming Language :: Python',
     'Programming Language :: Python :: 3.3',
     'Programming Language :: Python :: 3.4',
@@ -74,7 +74,7 @@ setup(
     url='https://github.com/tuneinc/safe-cast',
     download_url='https://github.com/tuneinc/safe-cast/archive/v{0}.tar.gz'.format(version),
     keywords="safe casting tune",
-    license='Apache Software License',
+    license='MIT License',
     zip_safe=False,
     include_package_data=True,
     install_requires=REQUIREMENTS,
