@@ -28,6 +28,7 @@ safecast/__pycache__/
 
 # pytest
 .cache/*
+.pytest_cache/*
 /htmlcov/
 /.coverage
 

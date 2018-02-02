@@ -4,7 +4,7 @@
 #  @namespace safe_cast
 
 __title__ = 'safe-cast'
-__version__ = '0.2.4'
+__version__ = '0.2.8'
 __version_info__ = tuple(__version__.split('.'))
 
 __author__ = 'jefft@tune.com'
@@ -28,9 +28,39 @@ def safe_cast(val, to_type, default=None):
 
     try:
         return to_type(val)
-    except ValueError:
+    except ValueError as ex:
         if default is None:
-            raise
+            raise ValueError(
+                "\"{0}\", \"{1}\", {2} to {3}".format(
+                    str(ex).capitalize(),
+                    str(val),
+                    type(val).__name__,
+                    str(to_type.__name__)
+                )
+            )
+        return default
+    except TypeError as ex:
+        if default is None:
+            raise TypeError(
+                "\"{0}\", \"{1}\", {2} to {3}".format(
+                    str(ex).capitalize(),
+                    str(val),
+                    type(val).__name__,
+                    str(to_type.__name__)
+                )
+            )
+        return default
+    except Exception as ex:
+        if default is None:
+            raise Exception(
+                "{0}, \"{1}\", \"{2}\", {3} to {4}".format(
+                    ex.__class__.__name__,
+                    str(ex).capitalize(),
+                    str(val),
+                    type(val).__name__,
+                    str(to_type.__name__)
+                )
+            )
         return default
 
 
@@ -90,6 +120,28 @@ def safe_dict(val, default=None):
         return default if default is not None else {}
 
     return safe_cast(val, dict, default)
+
+
+def safe_fraction(fraction, ndigits=2, default=None):
+    try:
+        return safe_float(fraction, ndigits, default)
+    except ValueError:
+        try:
+            num, denom = fraction.split('/')
+        except ValueError:
+            return None
+
+        try:
+            leading, num = num.split(' ')
+        except ValueError:
+            return safe_float(float(num) / float(denom), ndigits, default)
+
+        if float(leading) < 0:
+            sign_mult = -1
+        else:
+            sign_mult = 1
+
+        return safe_float(float(leading) + sign_mult * (float(num) / float(denom)), ndigits, default)
 
 
 def safe_smart_cast(val):

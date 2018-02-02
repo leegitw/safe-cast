@@ -11,6 +11,7 @@ from safe_cast import (
     safe_dict,
     safe_int,
     safe_cast,
+    safe_fraction
 )
 
 
@@ -30,6 +31,8 @@ def test_safe_str():
     assert safe_str(-1) == '-1'
     assert safe_str(10.52) == '10.52'
     assert safe_str(-1.32) == '-1.32'
+    assert safe_str('Noël') == 'Noël'
+    assert safe_str('Русский') == 'Русский'
 
 
 def test_safe_int():
@@ -49,8 +52,10 @@ def test_safe_int():
     # test default param:
     assert safe_int('###', 256) == 256
     # test exception raising:
-    with pytest.raises(ValueError, message='Expecting ValueError to be raised'):
+    with pytest.raises(ValueError, message='Expecting ValueError to be raised') as excinfo:
         safe_int('##')
+    assert '"Could not convert string to float: \'##\'", "##", str to float' \
+           in str(excinfo.value)
 
 
 def test_safe_float():
@@ -75,18 +80,33 @@ def test_safe_float():
     # test default param:
     assert safe_float('###', default=1.1) == 1.1
     # test exception raising:
-    with pytest.raises(ValueError, message='Expecting ValueError to be raised'):
+    with pytest.raises(ValueError, message='Expecting ValueError to be raised') as excinfo:
         safe_float('##')
+    assert '"Could not convert string to float: \'##\'", "##", str to float' \
+           in str(excinfo.value)
+
+
+def test_safe_fraction():
+    assert safe_fraction("1/2") == 0.5
+    assert safe_fraction("1/3") == 0.33
+    assert safe_fraction("1/3", ndigits=6) == 0.333333
+    assert safe_fraction("-3 1/6", ndigits=4) == -3.1667
+    assert safe_fraction(1/3, ndigits=6) == 0.333333
 
 
 def test_safe_dict():
     # test basic dict:
     assert isinstance(safe_dict({'key': 'value'}), dict)
     # test fail:
-    with pytest.raises(TypeError, message='Expecting TypeError because passing not iterable value.'):
+    with pytest.raises(TypeError, message='Expecting TypeError because passing not iterable value.') as excinfo:
         assert safe_dict(5)
-    with pytest.raises(ValueError, message='Expecting ValueError because str not castable to dict.'):
+    assert '"\'int\' object is not iterable", "5", int to dict' \
+           in str(excinfo.value)
+
+    with pytest.raises(ValueError, message='Expecting ValueError because str not castable to dict.') as excinfo:
         assert safe_dict('Hello Jeff')
+    assert '"Dictionary update sequence element #0 has length 1; 2 is required", "Hello Jeff", str to dict' \
+           in str(excinfo.value)
 
 
 def test_None():
@@ -112,4 +132,3 @@ def test_empty():
     assert safe_dict("") == {}
     assert safe_dict('') == {}
     assert safe_dict('', {'Max': 'Ohad'}) == {'Max': 'Ohad'}
-
