@@ -3,6 +3,13 @@
 Release History
 ===============
 
+0.3.0 (2018-02-05)
+------------------
+- Added safe_fraction.
+- Verbose exceptions handling.
+- More examples.
+- More tests.
+
 0.2.4 (2018-01-25)
 ------------------
 - migrate to github/tuneinc.
