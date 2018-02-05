@@ -5,14 +5,7 @@
 
 import pytest
 
-from safe_cast import (
-    safe_float,
-    safe_str,
-    safe_dict,
-    safe_int,
-    safe_cast,
-    safe_fraction
-)
+from safe_cast import (safe_float, safe_str, safe_dict, safe_int, safe_cast, safe_fraction)
 
 
 def test_safe_str():
@@ -91,7 +84,7 @@ def test_safe_fraction():
     assert safe_fraction("1/3") == 0.33
     assert safe_fraction("1/3", ndigits=6) == 0.333333
     assert safe_fraction("-3 1/6", ndigits=4) == -3.1667
-    assert safe_fraction(1/3, ndigits=6) == 0.333333
+    assert safe_fraction(1 / 3, ndigits=6) == 0.333333
 
 
 def test_safe_dict():

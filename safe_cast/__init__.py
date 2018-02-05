@@ -32,10 +32,8 @@ def safe_cast(val, to_type, default=None):
         if default is None:
             raise ValueError(
                 "\"{0}\", \"{1}\", {2} to {3}".format(
-                    str(ex).capitalize(),
-                    str(val),
-                    type(val).__name__,
-                    str(to_type.__name__)
+                    str(ex).capitalize(), str(val),
+                    type(val).__name__, str(to_type.__name__)
                 )
             )
         return default
@@ -43,10 +41,8 @@ def safe_cast(val, to_type, default=None):
         if default is None:
             raise TypeError(
                 "\"{0}\", \"{1}\", {2} to {3}".format(
-                    str(ex).capitalize(),
-                    str(val),
-                    type(val).__name__,
-                    str(to_type.__name__)
+                    str(ex).capitalize(), str(val),
+                    type(val).__name__, str(to_type.__name__)
                 )
             )
         return default
@@ -55,10 +51,8 @@ def safe_cast(val, to_type, default=None):
             raise Exception(
                 "{0}, \"{1}\", \"{2}\", {3} to {4}".format(
                     ex.__class__.__name__,
-                    str(ex).capitalize(),
-                    str(val),
-                    type(val).__name__,
-                    str(to_type.__name__)
+                    str(ex).capitalize(), str(val),
+                    type(val).__name__, str(to_type.__name__)
                 )
             )
         return default
