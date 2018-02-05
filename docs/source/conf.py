@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 #
 # safe-cast documentation build configuration file, created by
-# sphinx-quickstart on Fri Dec  8 17:27:00 2017.
+# sphinx-quickstart on 2018-02-05 16:15:24.
 #
 # This file is execfile()d with the current directory set to its
 # containing dir.
@@ -50,7 +50,7 @@ master_doc = 'index'
 
 # General information about the project.
 project = u'safe-cast'
-copyright = u'2017, TUNE Inc.'
+copyright = u'2018, TUNE Inc.'
 author = u'TUNE Inc.'
 
 # The version info for the project you're documenting, acts as replacement for

@@ -154,7 +154,7 @@ Usage
     :return: Typed value
 
 ``safe_fraction(fraction, ndigits=2, default=None)``
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
     Safely cast a fraction string to float.
 
     Optional: Pass default value. Returned if casting fails.
