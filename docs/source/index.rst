@@ -93,6 +93,8 @@ Functions
 +-----------------------------------------------+------------------------------------------------------------------+
 | ``safe_cost(val)``                            | Cast value to type float by 4 decimal points.                    |
 +-----------------------------------------------+------------------------------------------------------------------+
+| ``safe_fraction(val)``                        | Cast fraction to type float, if failed, then used default.       |
++-----------------------------------------------+------------------------------------------------------------------+
 
 
 Usage
@@ -158,3 +160,13 @@ Usage
     :param val: Value to be smartly cast.
     :return: Typed value
 
+``safe_fraction(fraction, ndigits=2, default=None)``
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    Safely cast a fraction string to float.
+
+    Optional: Pass default value. Returned if casting fails.
+
+    :param fraction: Value of fraction to be cast to float.
+    :param ndigits: Number of digits in float.
+    :param default: Default if casting fails.
+    :return: Return float casted value or default.
