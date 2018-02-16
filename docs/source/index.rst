@@ -38,28 +38,28 @@ Badges
     :target: http://safe-cast.readthedocs.io
     :alt: Documentation Status
 
-.. |hits| image:: http://hits.dwyl.io/tuneinc/safe-cast.svg
-    :target: http://hits.dwyl.io/tuneinc/safe-cast
+.. |hits| image:: http://hits.dwyl.io/TuneLab/safe-cast.svg
+    :target: http://hits.dwyl.io/TuneLab/safe-cast
     :alt: Hit Count
 
-.. |contributors| image:: https://img.shields.io/github/contributors/tuneinc/safe-cast.svg
-    :target: https://github.com/tuneinc/safe-cast/graphs/contributors
+.. |contributors| image:: https://img.shields.io/github/contributors/TuneLab/safe-cast.svg
+    :target: https://github.com/TuneLab/safe-cast/graphs/contributors
     :alt: Contributors
 
 .. |license| image:: https://img.shields.io/badge/License-MIT-yellow.svg
     :alt: License Status
     :target: https://opensource.org/licenses/MIT
 
-.. |travis| image:: https://travis-ci.org/tuneinc/safe-cast.svg?branch=master
-    :target: https://travis-ci.org/tuneinc/safe-cast
+.. |travis| image:: https://travis-ci.org/TuneLab/safe-cast.svg?branch=master
+    :target: https://travis-ci.org/TuneLab/safe-cast
     :alt: Travis
 
-.. |coveralls| image:: https://coveralls.io/repos/github/tuneinc/safe-cast/badge.svg?branch=master
-    :target: https://coveralls.io/github/tuneinc/safe-cast?branch=master
+.. |coveralls| image:: https://coveralls.io/repos/github/TuneLab/safe-cast/badge.svg?branch=master
+    :target: https://coveralls.io/github/TuneLab/safe-cast?branch=master
     :alt: Code Coverage Status
 
-.. |requires| image:: https://requires.io/github/tuneinc/safe-cast/requirements.svg?branch=master
-     :target: https://requires.io/github/tuneinc/safe-cast/requirements/?branch=master
+.. |requires| image:: https://requires.io/github/TuneLab/safe-cast/requirements.svg?branch=master
+     :target: https://requires.io/github/TuneLab/safe-cast/requirements/?branch=master
      :alt: Requirements Status
 
 .. |version| image:: https://img.shields.io/pypi/v/safe-cast.svg?style=flat
