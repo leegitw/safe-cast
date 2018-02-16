@@ -4,15 +4,15 @@
 #  @namespace safe_cast
 
 __title__ = 'safe-cast'
-__version__ = '0.3.1'
+__version__ = '0.3.2'
 __version_info__ = tuple(__version__.split('.'))
 
 __author__ = 'jefft@tune.com'
 __license__ = 'MIT License'
 __copyright__ = 'Copyright 2018 TUNE, Inc.'
 
-__python_required_version__ = (3, 0)
 
+import numpy
 
 def safe_cast(val, to_type, default=None):
     """Safely cast a value to type, and if failed, returned default if exists.
@@ -31,28 +31,22 @@ def safe_cast(val, to_type, default=None):
     except ValueError as ex:
         if default is None:
             raise ValueError(
-                "\"{0}\", \"{1}\", {2} to {3}".format(
-                    str(ex).capitalize(), str(val),
-                    type(val).__name__, str(to_type.__name__)
+                "Error: {0}, Value: {1}, Cast: {2} to {3}".format(
+                    str(ex).capitalize(),
+                    str(val),
+                    type(val).__name__,
+                    str(to_type.__name__)
                 )
             )
         return default
     except TypeError as ex:
         if default is None:
             raise TypeError(
-                "\"{0}\", \"{1}\", {2} to {3}".format(
-                    str(ex).capitalize(), str(val),
-                    type(val).__name__, str(to_type.__name__)
-                )
-            )
-        return default
-    except Exception as ex:
-        if default is None:
-            raise Exception(
-                "{0}, \"{1}\", \"{2}\", {3} to {4}".format(
-                    ex.__class__.__name__,
-                    str(ex).capitalize(), str(val),
-                    type(val).__name__, str(to_type.__name__)
+                "Error: {0}, Value: {1}, Cast: {2} to {3}".format(
+                    str(ex).capitalize(),
+                    str(val),
+                    type(val).__name__,
+                    str(to_type.__name__)
                 )
             )
         return default
@@ -85,7 +79,7 @@ def safe_float(val, ndigits=2, default=None):
         return default if default is not None else 0.0
 
     _val = val.replace(',', '') if type(val) == str else val
-    return round(safe_cast(_val, float, default), ndigits)
+    return numpy.around(safe_cast(_val, float, default), ndigits)
 
 
 def safe_int(val, default=None):

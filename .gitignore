@@ -28,9 +28,9 @@ safecast/__pycache__/
 
 # pytest
 .cache/*
-.pytest_cache/*
 /htmlcov/
 /.coverage
+/.pytest_cache/
 
 # distribution
 .eggs/*
