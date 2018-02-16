@@ -239,7 +239,7 @@ pylint: tools-requirements
 
 yapf: tools-requirements
 	@echo "======================================================"
-	@echo yapf $(PACKAGE)
+	@echo "yapf $(PYV3) $(PACKAGE)"
 	@echo "======================================================"
 	$(PYTHON3) -m yapf --style .style.yapf --in-place $(PACKAGE_ALL_FILES)
 
