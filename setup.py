@@ -49,6 +49,7 @@ CLASSIFIERS = [
     #   5 - Production/Stable
     'Development Status :: 5 - Production/Stable',
     'Intended Audience :: Developers',
+    'Operating System :: OS Independent',
     'Natural Language :: English',
     'License :: OSI Approved :: MIT License',
     'Programming Language :: Python',
