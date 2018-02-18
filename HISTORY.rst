@@ -3,6 +3,10 @@
 Release History
 ===============
 
+0.3.1 (2018-02-15)
+------------------
+- migrate to github/TuneLab.
+
 0.3.0 (2018-02-05)
 ------------------
 - Added safe_fraction.
