@@ -1,5 +1,6 @@
 language: python
 python:
+- "2.7"
 - '3.6'
 install:
 - pip install .
@@ -7,9 +8,12 @@ install:
 - pip install pyflakes
 - pip install coveralls
 before_script:
-- make pyflakes
+- if [[ $TRAVIS_PYTHON_VERSION == 2.7 ]]; then make pyflakes-27; fi
+- if [[ $TRAVIS_PYTHON_VERSION == 3.6 ]]; then make pyflakes; fi
 script:
-- make test
-- make coverage
+- if [[ $TRAVIS_PYTHON_VERSION == 2.7 ]]; then make test-27; fi
+- if [[ $TRAVIS_PYTHON_VERSION == 2.7 ]]; then make coverage-27; fi
+- if [[ $TRAVIS_PYTHON_VERSION == 3.6 ]]; then make test; fi
+- if [[ $TRAVIS_PYTHON_VERSION == 3.6 ]]; then make coverage; fi
 after_success:
   coveralls

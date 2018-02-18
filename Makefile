@@ -9,8 +9,13 @@
 PACKAGE := safe-cast
 PACKAGE_PREFIX := safe_cast
 
+PYTHON2 := $(shell which python)
+PIP2    := $(shell which pip)
+PYV2    := $(shell $(PYTHON2) -c "import sys;t='{v[0]}.{v[1]}'.format(v=list(sys.version_info[:2]));sys.stdout.write(t)")
+
 PYTHON3 := $(shell which python3)
 PIP3    := $(shell which pip3)
+PYV3    := $(shell $(PYTHON3) -c "import sys;t='{v[0]}.{v[1]}'.format(v=list(sys.version_info[:2]));sys.stdout.write(t)")
 
 PY_MODULES := pip setuptools pylint flake8 pprintpp pep8 requests six sphinx wheel python-dateutil
 
@@ -27,7 +32,7 @@ PACKAGE_ALL_FILES := $(shell find $(PACKAGE_PREFIX) tests examples -type f -name
 PACKAGE_EXAMPLE_FILES := $(shell find examples ! -name '__init__.py' -type f -name "*.py")
 PYFLAKES_ALL_FILES := $(shell find $(PACKAGE_PREFIX) tests examples -type f  -name '*.py')
 
-TOOLS_REQ_FILE := requirements-tools.txt
+REQ_TOOLS_FILE := requirements-tools.txt
 REQ_FILE      := requirements.txt
 SETUP_FILE    := setup.py
 ALL_FILES     := $(PACKAGE_FILES) $(REQ_FILE) $(SETUP_FILE)
@@ -56,6 +61,19 @@ clean:
 	find ./dist/ -name $(PACKAGE_WILDCARD) -exec rm -vf {} \;
 	find ./dist/ -name $(PACKAGE_PREFIX_WILDCARD) -exec rm -vf {} \;
 
+uninstall-package-27: clean
+	@echo "======================================================"
+	@echo uninstall-package-27 $(PACKAGE)
+	@echo "======================================================"
+	$(PIP2) install --upgrade list
+	@if $(PIP2) list --format=legacy | grep -F $(PACKAGE) > /dev/null; then \
+		echo "python package $(PACKAGE) Found"; \
+		$(PIP2) uninstall --yes $(PACKAGE); \
+		echo "uninstall package $(PACKAGE)"; \
+	else \
+		echo "python package $(PACKAGE) Not Found"; \
+	fi
+
 uninstall-package: clean
 	@echo "======================================================"
 	@echo uninstall-package $(PACKAGE)
@@ -69,15 +87,32 @@ uninstall-package: clean
 		echo "python package $(PACKAGE) Not Found"; \
 	fi
 
+install-requirements-27: clean
+	@echo "======================================================"
+	@echo "install-requirements $(PYV2) $(PACKAGE)"
+	@echo "======================================================"
+	$(PIP2) install --upgrade pip
+	$(PIP2) install -r $(REQ_FILE)
+	$(PIP2) uninstall --yes --no-input -r $(REQ_FILE)
+	$(PIP2) install --upgrade -r $(REQ_FILE)
+	@echo "======================================================"
+
 install-requirements: clean
 	@echo "======================================================"
-	@echo install-requirements $(PACKAGE)
+	@echo "install-requirements $(PYV3) $(PACKAGE)"
 	@echo "======================================================"
 	$(PIP3) install --upgrade pip
 	$(PIP3) install -r $(REQ_FILE)
 	$(PIP3) uninstall --yes --no-input -r $(REQ_FILE)
 	$(PIP3) install --upgrade -r $(REQ_FILE)
 	@echo "======================================================"
+
+site-packages-27:
+	@echo "======================================================"
+	@echo site-packages-27
+	@echo "======================================================"
+	$(eval PYTHON2_SITE_PACKAGES := $(shell python -c "import site; print(site.getsitepackages()[0])"))
+	@echo $(PYTHON2_SITE_PACKAGES)
 
 site-packages:
 	@echo "======================================================"
@@ -86,19 +121,40 @@ site-packages:
 	$(eval PYTHON3_SITE_PACKAGES := $(shell python3 -c "import site; print(site.getsitepackages()[0])"))
 	@echo $(PYTHON3_SITE_PACKAGES)
 
+remove-package-27: uninstall-package-27 site-packages-27
+	@echo "======================================================"
+	@echo "remove-package $(PYV2) $(PACKAGE)"
+	@echo "======================================================"
+	rm -fR $(PYTHON2_SITE_PACKAGES)/$(PACKAGE_PREFIX)*
+
 remove-package: uninstall-package site-packages
 	@echo "======================================================"
-	@echo remove-package $(PACKAGE_PREFIX)
+	@echo "remove-package $(PYV3) $(PACKAGE)"
 	@echo "======================================================"
 	rm -fR $(PYTHON3_SITE_PACKAGES)/$(PACKAGE_PREFIX)*
 
+install-27: remove-package-27
+	@echo "======================================================"
+	@echo "install $(PYV2) $(PACKAGE)"
+	@echo "======================================================"
+	$(PIP2) install --upgrade pip
+	$(PIP2) install --upgrade $(WHEEL_ARCHIVE)
+	$(PIP2) freeze | grep $(PACKAGE)
+
 install: remove-package
 	@echo "======================================================"
-	@echo install $(PACKAGE)
+	@echo "install $(PYV3) $(PACKAGE)"
 	@echo "======================================================"
 	$(PIP3) install --upgrade pip
 	$(PIP3) install --upgrade $(WHEEL_ARCHIVE)
 	$(PIP3) freeze | grep $(PACKAGE)
+
+freeze-27:
+	@echo "======================================================"
+	@echo freeze-27 $(PACKAGE)
+	@echo "======================================================"
+	$(PIP2) install --upgrade freeze
+	$(PIP2) freeze | grep $(PACKAGE)
 
 freeze:
 	@echo "======================================================"
@@ -107,44 +163,52 @@ freeze:
 	$(PIP3) install --upgrade freeze
 	$(PIP3) freeze | grep $(PACKAGE)
 
+fresh: dist dist-update install
+	@echo "======================================================"
+	@echo fresh completed $(PACKAGE)
+	@echo "======================================================"
+
 # Register the module with PyPi.
 register:
 	$(PYTHON3) $(SETUP_FILE) register
 
-local-dev-editable: remove-package
+local-dev-27: remove-package-27
 	@echo "======================================================"
-	@echo local-dev-editable $(PACKAGE)
+	@echo "local-dev $(PYV2) $(PACKAGE)"
 	@echo "======================================================"
-	$(PIP3) install --upgrade freeze
-	$(PIP3) install --upgrade --editable .
-	$(PIP3) freeze | grep $(PACKAGE)
+	$(PIP2) install --upgrade freeze
+	$(PIP2) install --upgrade .
+	$(PIP2) freeze | grep $(PACKAGE)
 
 local-dev: remove-package
 	@echo "======================================================"
-	@echo local-dev $(PACKAGE)
+	@echo "local-dev $(PYV3) $(PACKAGE)"
 	@echo "======================================================"
 	$(PIP3) install --upgrade freeze
 	$(PIP3) install --upgrade .
-	@echo "======================================================"
 	$(PIP3) freeze | grep $(PACKAGE)
-	@echo "======================================================"
 
-dist: install-requirements
+dist: clean
 	@echo "======================================================"
 	@echo dist $(PACKAGE)
 	@echo "======================================================"
+	$(PIP3) install --upgrade -r requirements.txt
 	hub release create -m "$(PACKAGE_PREFIX)-$(VERSION)-$(PACKAGE_SUFFIX)" v$(VERSION)
-	$(PYTHON3) $(SETUP_FILE) bdist_wheel upload
-	$(PYTHON3) $(SETUP_FILE) sdist --format=gztar upload
-	@echo "======================================================"
+	$(PYTHON3) $(SETUP_FILE) sdist bdist_wheel upload
 	ls -al ./dist/$(PACKAGE_PREFIX_WILDCARD)
 	@echo "======================================================"
 
-tools-requirements: $(TOOLS_REQ_FILE)
+tools-requirements-27: $(REQ_TOOLS_FILE)
 	@echo "======================================================"
-	@echo tools-requirements
+	@echo "tools-requirements $(PYV2)"
 	@echo "======================================================"
-	$(PIP3) install --upgrade -r $(TOOLS_REQ_FILE)
+	$(PIP2) install --upgrade -r $(REQ_TOOLS_FILE)
+
+tools-requirements: $(REQ_TOOLS_FILE)
+	@echo "======================================================"
+	@echo "tools-requirements $(PYV3)"
+	@echo "======================================================"
+	$(PIP3) install --upgrade -r $(REQ_TOOLS_FILE)
 
 pep8: tools-requirements
 	@echo "======================================================"
@@ -152,9 +216,16 @@ pep8: tools-requirements
 	@echo "======================================================"
 	$(PYTHON3) -m pep8 --config .pep8 $(PACKAGE_ALL_FILES)
 
+pyflakes-27: tools-requirements-27
+	@echo "======================================================"
+	@echo "pyflakes $(PYV2) $(PACKAGE)"
+	@echo "======================================================"
+	$(PIP2) install --upgrade pyflakes
+	$(PYTHON2) -m pyflakes $(PYFLAKES_ALL_FILES)
+
 pyflakes: tools-requirements
 	@echo "======================================================"
-	@echo pyflakes $(PACKAGE)
+	@echo "pyflakes $(PYV3) $(PACKAGE)"
 	@echo "======================================================"
 	$(PIP3) install --upgrade pyflakes
 	$(PYTHON3) -m pyflakes $(PYFLAKES_ALL_FILES)
@@ -168,7 +239,7 @@ pylint: tools-requirements
 
 yapf: tools-requirements
 	@echo "======================================================"
-	@echo yapf $(PACKAGE)
+	@echo "yapf $(PYV3) $(PACKAGE)"
 	@echo "======================================================"
 	$(PYTHON3) -m yapf --style .style.yapf --in-place $(PACKAGE_ALL_FILES)
 
@@ -184,28 +255,56 @@ flake8:
 	@echo "======================================================"
 	flake8 --ignore=F401,E265,E129 $(PACKAGE_PREFIX)
 
+list-package-27: site-packages-27
+	@echo "======================================================"
+	@echo list-packages-27 $(PACKAGE)
+	@echo "======================================================"
+	ls -al $(PYTHON2_SITE_PACKAGES)/$(PACKAGE_PREFIX)*
+
 list-package: site-packages
 	@echo "======================================================"
 	@echo list-packages $(PACKAGE)
 	@echo "======================================================"
 	ls -al $(PYTHON3_SITE_PACKAGES)/$(PACKAGE_PREFIX)*
 
-run-examples:
+run-example-27: local-dev-27
 	@echo "======================================================"
-	@echo run-examples $(PACKAGE)
+	@echo "run-example $(PYV2)"
 	@echo "======================================================"
-	@echo examples/example_safe_cast.py
+	$(PYTHON3) examples/*.py
+
+run-example: local-dev
 	@echo "======================================================"
-	@$(PYTHON3) examples/example_safe_cast.py
+	@echo "run-example $(PYV3)"
+	@echo "======================================================"
+	$(PYTHON3) examples/*.py
 
-test:
-	py.test tests
+test-27: local-dev-27
+	@echo "======================================================"
+	@echo "test $(PYV2)"
+	@echo "======================================================"
+	$(PYTHON2) -m pytest --verbose tests
 
-coverage:
-	py.test --verbose --cov-report html --cov=safe_cast tests
+test: local-dev
+	@echo "======================================================"
+	@echo "test $(PYV3)"
+	@echo "======================================================"
+	$(PYTHON3) -m pytest --verbose tests
 
-coverage-percent:
-	py.test --verbose --cov=safe_cast tests
+coverage-27: install-requirements-27
+	@echo "======================================================"
+	@echo "coverage $(PYV2)"
+	@echo "======================================================"
+	$(PYTHON2) -m pytest --verbose --cov-report term-missing --cov=$(PACKAGE_PREFIX) tests
+
+coverage: install-requirements
+	@echo "======================================================"
+	@echo "coverage $(PYV3)"
+	@echo "======================================================"
+	$(PYTHON3) -m pytest --verbose --cov-report term-missing --cov=$(PACKAGE_PREFIX) tests
 
 list:
+	@echo "======================================================"
+	@echo Makefile target list
+	@echo "======================================================"
 	cat Makefile | grep "^[a-z]" | awk '{print $$1}' | sed "s/://g" | sort

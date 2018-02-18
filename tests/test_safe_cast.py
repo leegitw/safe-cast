@@ -47,8 +47,10 @@ def test_safe_int():
     # test exception raising:
     with pytest.raises(ValueError, message='Expecting ValueError to be raised') as excinfo:
         safe_int('##')
-    assert '"Could not convert string to float: \'##\'", "##", str to float' \
+    assert 'Error: Could not convert string to float:' \
            in str(excinfo.value)
+    assert 'Value: ##' in str(excinfo.value)
+    assert 'Cast: str to float' in str(excinfo.value)
 
 
 def test_safe_float():
@@ -75,8 +77,11 @@ def test_safe_float():
     # test exception raising:
     with pytest.raises(ValueError, message='Expecting ValueError to be raised') as excinfo:
         safe_float('##')
-    assert '"Could not convert string to float: \'##\'", "##", str to float' \
+    assert 'Error: Could not convert string to float:' \
            in str(excinfo.value)
+    assert 'Value: ##' in str(excinfo.value)
+    assert 'Cast: str to float' in str(excinfo.value)
+
 
 
 def test_safe_fraction():
@@ -84,7 +89,6 @@ def test_safe_fraction():
     assert safe_fraction("1/3") == 0.33
     assert safe_fraction("1/3", ndigits=6) == 0.333333
     assert safe_fraction("-3 1/6", ndigits=4) == -3.1667
-    assert safe_fraction(1 / 3, ndigits=6) == 0.333333
 
 
 def test_safe_dict():
@@ -93,13 +97,16 @@ def test_safe_dict():
     # test fail:
     with pytest.raises(TypeError, message='Expecting TypeError because passing not iterable value.') as excinfo:
         assert safe_dict(5)
-    assert '"\'int\' object is not iterable", "5", int to dict' \
-           in str(excinfo.value)
+    assert 'Error: \'int\' object is not iterable' in str(excinfo.value)
+    assert 'Value: 5' in str(excinfo.value)
+    assert 'Cast: int to dict' in str(excinfo.value)
 
     with pytest.raises(ValueError, message='Expecting ValueError because str not castable to dict.') as excinfo:
         assert safe_dict('Hello Jeff')
-    assert '"Dictionary update sequence element #0 has length 1; 2 is required", "Hello Jeff", str to dict' \
+    assert 'Error: Dictionary update sequence element #0 has length 1; 2 is required' \
            in str(excinfo.value)
+    assert 'Value: Hello Jeff' in str(excinfo.value)
+    assert 'Cast: str to dict' in str(excinfo.value)
 
 
 def test_None():
