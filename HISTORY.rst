@@ -3,6 +3,10 @@
 Release History
 ===============
 
+0.3.4 (2018-04-20)
+------------------
+* Update requirements.txt
+
 0.3.2 (2018-02-16)
 ------------------
 - Python 2.7 supported
