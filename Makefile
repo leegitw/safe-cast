@@ -63,7 +63,7 @@ clean:
 
 uninstall-package-27: clean
 	@echo "======================================================"
-	@echo uninstall-package-27 $(PACKAGE)
+	@echo uninstall-package $(PYV2) $(PACKAGE)
 	@echo "======================================================"
 	$(PIP2) install --upgrade list
 	@if $(PIP2) list --format=legacy | grep -F $(PACKAGE) > /dev/null; then \
@@ -76,7 +76,7 @@ uninstall-package-27: clean
 
 uninstall-package: clean
 	@echo "======================================================"
-	@echo uninstall-package $(PACKAGE)
+	@echo uninstall-package $(PYV3) $(PACKAGE)
 	@echo "======================================================"
 	$(PIP3) install --upgrade list
 	@if $(PIP3) list --format=legacy | grep -F $(PACKAGE) > /dev/null; then \
@@ -109,14 +109,14 @@ install-requirements: clean
 
 site-packages-27:
 	@echo "======================================================"
-	@echo site-packages-27
+	@echo site-packages $(PYV2)
 	@echo "======================================================"
 	$(eval PYTHON2_SITE_PACKAGES := $(shell python -c "import site; print(site.getsitepackages()[0])"))
 	@echo $(PYTHON2_SITE_PACKAGES)
 
 site-packages:
 	@echo "======================================================"
-	@echo site-packages
+	@echo site-packages $(PYV3)
 	@echo "======================================================"
 	$(eval PYTHON3_SITE_PACKAGES := $(shell python3 -c "import site; print(site.getsitepackages()[0])"))
 	@echo $(PYTHON3_SITE_PACKAGES)
@@ -151,14 +151,14 @@ install: remove-package
 
 freeze-27:
 	@echo "======================================================"
-	@echo freeze-27 $(PACKAGE)
+	@echo freeze $(PYV2) $(PACKAGE)
 	@echo "======================================================"
 	$(PIP2) install --upgrade freeze
 	$(PIP2) freeze | grep $(PACKAGE)
 
 freeze:
 	@echo "======================================================"
-	@echo freeze $(PACKAGE)
+	@echo freeze $(PYV3) $(PACKAGE)
 	@echo "======================================================"
 	$(PIP3) install --upgrade freeze
 	$(PIP3) freeze | grep $(PACKAGE)
@@ -267,15 +267,15 @@ list-package: site-packages
 	@echo "======================================================"
 	ls -al $(PYTHON3_SITE_PACKAGES)/$(PACKAGE_PREFIX)*
 
-run-example-27: local-dev-27
+run-examples-27: local-dev-27
 	@echo "======================================================"
-	@echo "run-example $(PYV2)"
+	@echo "run-examples $(PYV2)"
 	@echo "======================================================"
-	$(PYTHON3) examples/*.py
+	$(PYTHON2) examples/*.py
 
-run-example: local-dev
+run-examples: local-dev
 	@echo "======================================================"
-	@echo "run-example $(PYV3)"
+	@echo "run-examples $(PYV3)"
 	@echo "======================================================"
 	$(PYTHON3) examples/*.py
 

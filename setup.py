@@ -30,7 +30,7 @@ PACKAGES = [
     'safe_cast',
 ]
 
-TEST_REQUIREMENTS = ['pytest>=2.8.0', 'pytest-cov']
+TEST_REQUIREMENTS = ['pytest>=3.5.0', 'pytest-cov']
 
 with open('safe_cast/__init__.py', 'r') as fd:
     version = re.search(r'^__version__\s*=\s*[\'"]([^\'"]*)[\'"]', fd.read(), re.MULTILINE).group(1)
